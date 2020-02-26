@@ -1,0 +1,91 @@
+---
+title: "Messy Data Activity"
+author: "Daniel Gonzalez-Suarez, solved exercise from EDA_R course"
+date: "February, 2020"
+output:
+  html_document:
+    theme: united
+    toc: yes
+  pdf_document:
+    toc: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction
+We received messy data to work on. Bug fixing!
+
+# Installing required packages
+```{r, message=FALSE}
+# If you don't yet have tidyverse run:
+# install.packages("tidyverse")
+library(tidyverse)
+```
+
+
+# STEP 1: Loading our data
+```{r}
+InchLake <- read.csv("data/InchLake2-Broken.csv")
+InchLake <- select(InchLake, -X)
+
+str(InchLake)
+head(InchLake)
+tail(InchLake)
+```
+
+
+# STEP 2: Checking data types
+```{r}
+# Create a new df to work and manipulate
+InchLakeFix <- InchLake
+
+# class of each variable
+sapply(InchLakeFix, class)
+
+# investigate factors of weight
+levels(InchLakeFix$weight)
+
+
+# removing commas using gsub(); first, convert to character
+
+InchLakeFix$weight <- as.character(InchLakeFix$weight)
+InchLakeFix$weight <- gsub(",", 
+                       "", 
+                       InchLakeFix$weight)
+
+InchLakeFix$weight <- as.numeric(InchLakeFix$weight)
+
+# run this to check if everything's in order: 
+# sapply() to check levels
+# levels() should be NULL
+# range (), max(), plot() to check numeric values
+
+sapply(InchLakeFix, class)
+levels(InchLakeFix$weight)
+range(InchLakeFix$weight)
+max(InchLakeFix$weight)
+plot(InchLakeFix$weight)
+```
+
+
+# STEP 3: Check for missing or impossible values
+```{r}
+levels(InchLakeFix$year)
+InchLakeFix$year <- as.character(InchLakeFix$year)
+
+levels(InchLakeFix$year) <- list("2007"=c("2007", "2O07"), 
+                                 "2008"=c("2008", "2 008", "2048"))
+levels(InchLakeFix$year)
+unique(InchLakeFix$year)
+
+```
+
+
+# STEP 4: Check for typos and broken factors
+```{r}
+
+
+```
+
+
+
