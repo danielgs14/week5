@@ -1,0 +1,66 @@
+---
+title: "Messy Data Activity"
+author: "Dr. Luis Malpica, modified from a script by Dr. Brett Favaro"
+date: "February, 2020"
+output:
+  html_document:
+    theme: united
+    toc: yes
+  pdf_document:
+    toc: yes
+editor_options: 
+  chunk_output_type: console
+---
+
+# Introduction
+You will look at one table with messy data, you need to clean it up to be able to work with it in R.
+
+Collaboration and teamwork is encouraged!
+
+This dataset contains the following variables:
+# netID: A unique identifier for the sampling event (more than one can share)
+# fishID: A unique identifier for the individual fish (can't be duplicated)
+# species: Species name
+# length: Total length (inches to nearest 0.1)
+# weight: Wet weight (grams to nearest 0.1)
+# year: Year of capture
+
+Good luck!!
+
+# Install required packages
+```{r, message=FALSE}
+# If you don't yet have tidyverse run:
+# install.packages("tidyverse")
+library(tidyverse)
+```
+
+
+# STEP 1: Did it load correctly?
+```{r}
+
+
+```
+
+
+# STEP 2: Check data types
+```{r}
+
+
+```
+
+
+# STEP 3: Check for missing or impossible values
+```{r}
+
+
+```
+
+
+# STEP 4: Check for typos and broken factors
+```{r}
+
+
+```
+
+
+
