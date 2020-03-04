@@ -1,0 +1,1 @@
+Week's 5 exercises for EDA in R. Includes data used and analyzed.

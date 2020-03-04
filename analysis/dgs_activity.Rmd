@@ -53,6 +53,7 @@ InchLakeFix$weight <- gsub(",",
                        "", 
                        InchLakeFix$weight)
 
+# convert as numeric
 InchLakeFix$weight <- as.numeric(InchLakeFix$weight)
 
 # run this to check if everything's in order: 
@@ -68,10 +69,11 @@ plot(InchLakeFix$weight)
 ```
 
 
-# STEP 3: Check for missing or impossible values
+# STEP 3: Check for nonsense!
 ```{r}
+# checking columns, there are strange values in year
 levels(InchLakeFix$year)
-InchLakeFix$year <- as.character(InchLakeFix$year)
+#InchLakeFix$year <- as.character(InchLakeFix$year)
 
 levels(InchLakeFix$year) <- list("2007"=c("2007", "2O07"), 
                                  "2008"=c("2008", "2 008", "2048"))
