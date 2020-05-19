@@ -17,8 +17,6 @@ We received messy data to work on. Bug fixing!
 
 # Installing required packages
 ```{r, message=FALSE}
-# If you don't yet have tidyverse run:
-# install.packages("tidyverse")
 library(tidyverse)
 ```
 
@@ -80,14 +78,38 @@ levels(InchLakeFix$year) <- list("2007"=c("2007", "2O07"),
 levels(InchLakeFix$year)
 unique(InchLakeFix$year)
 
+InchLakeFixGroup <- group_by(InchLakeFix$fishID)
+
+InchLakeFix %>% 
+  group_by(fishID) %>% filter(n()>1)  #Three different occurrences for one ID.
+
+InchLakeFix %>%
+  mutate(fishID = ifelse(fishID==517 & length==2.2, 516, fishID)) %>% 
+  mutate(fishID = ifelse(fishID==517 & length==9.0, 222, fishID))
+
 ```
 
 
 # STEP 4: Check for typos and broken factors
 ```{r}
+head(InchLakeFix)
 
+levels(InchLakeFix$species) # There are many mispelled names. We'll have to select all the variations and group them in only one level.
+plot(InchLakeFix$weight ~ InchLakeFix$species) #There should only be nine species
+
+levels(InchLakeFix$species) <- list("Black Crappie"=c("Black Crapie", "Black Crappie"), 
+                                   "Bluegill"=c("bluegill", "Bluegill", "Bluegill "),
+                                   "Bluntnose Minnow" = c("Bluntnose Minnow"), 
+                                   "Fathead Minnow" = c("Fathead Minnow"),
+                                   "Iowa Darter" = c("Iowa Darter", "Iowa_Darter "),
+                                   "Largemouth Bass" = c("Largemout Bass", "Largemouth Bass"),
+                                   "Pumpkinseed" = c("Pumpkinseed"),
+                                   "Tadpole Madtom" = c("Tadpole Madtom"),
+                                   "Yellow Perch" = c("Yellow Perch")
+                                   )
+
+levels(InchLakeFix$species) #Nine species! As expected. 
+plot(InchLakeFix$weight ~ InchLakeFix$species)
 
 ```
-
-
 
